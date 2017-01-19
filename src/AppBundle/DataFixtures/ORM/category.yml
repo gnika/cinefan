@@ -1,0 +1,4 @@
+AppBundle\Entity\Category:
+    category_{1..10}:
+        name(unique): <randomElement(["Sci-fi", "Horreur", "Fantastique", "Aventure", "Romance", "Thriller", "Comédie", "Action", "Biopic", "Animation", "Historique"])>
+        slug: <new \AppBundle\Service\SlugService->getSlug(@self->name)>

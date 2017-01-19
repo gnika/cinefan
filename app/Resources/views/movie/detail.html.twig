@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+     {{ 'now'|localizeddate('long', 'none') }}<br/>
+    <a href="{{ path('app.admin.movie.form') }}">{{ 'form.movie.list.addth' | trans }}</a><br\>
+    {% if app.session.flashBag.has('success') %}
+        <div class="alert alert-success">
+            {% for msg in app.session.flashBag.get('success') %}
+                {{ msg }}
+            {% endfor %}
+        </div>
+    {% endif %}
+    <table class="table table-striped table-inverse">
+        <thead class="thead-default">
+            <tr>
+                <th>Nom</th>
+                <th>Image</th>
+                <th>Date de sortie</th>
+                <th>Catégorie</th>
+                <th>Alias</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+                <tr>
+                    <td>
+                        {{ movie.title }}
+                    </td>
+
+                    <td>
+                        {{ movie.releaseDate | date('d/m/Y') }}
+                    </td>
+
+                    <td>
+                        <img width="100" height="150" src="/upload/movie/{{ movie.poster }}" />
+                    </td>
+                    <td>
+                        {{ movie.category.name }}
+                    </td>
+                     <td>
+                        {{ movie.alias }}
+                    </td>
+                     <td>
+                        <span class="specialPrice">{{ movie.price }}</span>€
+                    </td>
+                     <td>
+                         {% if app.user %}
+                             <a href="{{url('app.admin.movie.form.update', {'id' : movie.id })}}" type="button" class="btn btn-primary">{{ 'form.movie.list.edit' | trans }}</a>
+                             <a href="{{url('app.admin.movie.delete', {'id' : movie.id })}}" type="button" class="btn btn-danger">{{ 'form.movie.list.delete' | trans }}</a>
+
+                         {% else %}
+
+                         {% endif %}
+                         <a id="addid{{ movie.id }}" type="button" class=" add btn btn-warning">{{ 'form.movie.buy' | trans }}</a>
+
+                     </td>
+                 </tr>
+
+        </tbody>
+    </table>
+
+{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
+    <script src="{{ asset('js/panierAjax.js') }}"></script>
+{% endblock %}

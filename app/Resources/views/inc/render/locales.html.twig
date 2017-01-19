@@ -1,0 +1,3 @@
+{% for key, route in routes %}
+    <li><a href="{{ route }}">{{key | trans({}, 'language') }}</a></li>
+{% endfor %}

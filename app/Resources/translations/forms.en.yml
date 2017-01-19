@@ -1,0 +1,4 @@
+submit:
+    create: Create
+    update: Update
+    search: Search

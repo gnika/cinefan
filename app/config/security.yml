@@ -1,0 +1,46 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/security.html
+security:
+
+
+    providers:
+            our_db_provider:
+                entity:
+                    class: AppBundle:User
+                    property: username
+                    # if you're using multiple entity managers
+                    # manager_name: customer
+
+    encoders:
+                AppBundle\Entity\User:
+                    algorithm: bcrypt
+                    cost: 12
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            anonymous: ~
+            provider: our_db_provider
+            form_login:
+                            login_path: app.security.login
+                            check_path: app.security.login
+                            default_target_path: app.homepage.index
+            logout:
+                            path: app.security.logout
+                            target: app.homepage.index
+                            invalidate_session: false
+                            #permet de de ne pas clear toutes les sessions à la déconnexion
+
+    access_control:
+        - { path: /admin, roles: ROLE_ADMIN}
+        - { path: /order, roles: ROLE_USER}
+
+
+    role_hierarchy:
+            ROLE_ADMIN:       ROLE_USER
+            ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+

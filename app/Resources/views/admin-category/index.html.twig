@@ -1,0 +1,44 @@
+{% extends 'base.admin.html.twig' %}
+
+{% block body %}
+     {{ 'now'|localizeddate('long', 'none') }}<br/>
+    <a href="{{ path('app.admin.category.form') }}">{{ 'form.category.list.addth' | trans }}</a><br\>
+    {% if app.session.flashBag.has('success') %}
+        <div class="alert alert-success">
+            {% for msg in app.session.flashBag.get('success') %}
+                {{ msg }}
+            {% endfor %}
+        </div>
+    {% endif %}
+    <table class="table table-striped table-inverse">
+        <thead class="thead-default">
+            <tr>
+                <th>Nom</th>
+                <th>Alias</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for category in categ %}
+                <tr>
+                    <td>
+                        {{ category.name }}
+                    </td>
+
+                    <td>
+                        {{ category.slug }}
+                    </td>
+                     <td>
+                         <a href="{{url('app.admin.category.form.update', {'id' : category.id })}}" type="button" class="btn btn-primary">{{ 'form.category.list.edit' | trans }}</a>
+                         <a href="{{url('app.admin.category.delete', {'id' : category.id })}}" type="button" class="btn btn-danger">{{ 'form.category.list.delete' | trans }}</a>
+                    </td>
+                 </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}

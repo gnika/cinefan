@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <table class="table table-striped table-inverse">
+        <thead class="thead-default">
+        <tr>
+            <th>Nom</th>
+            <th>Image</th>
+            <th>Année de sortie</th>
+            <th>Catégorie</th>
+            <th>Acteur principal</th>
+            <th>Alias</th>
+            <th>Price (unitaire)</th>
+            <th>Quantité voulue</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+        <tbody class="renduListe">
+
+
+
+        {% for movie in movies %}
+
+            <tr class="ligne{{ movie.id }}">
+                <td>
+                    <a href="{{url('app.movie.detail', {'id' : movie.id, 'slug' : movie.alias })}}">{{ movie.title }}</a>
+                </td>
+
+                <td>
+                    <img width="100" height="150" src="/upload/movie/{{ movie.poster }}" />
+                </td>
+                <td>
+                    {{ movie.releaseDate | date('Y') }}
+                </td>
+                <td>
+                    {% if movie.category.name is defined %}
+                        {{ movie.category.name }}
+                    {% else %}
+                        {{ movie.cat_name }}
+                    {% endif %}
+                </td>
+                <td>
+                    {% if movie.actors is defined %}
+                        {% for actor in movie.actors %}
+                            {{ actor.lastname }}
+                        {% endfor %}
+                    {% else %}
+                        {{ movie.lastname }}
+                    {% endif %}
+
+                </td>
+                <td>
+                    {{ movie.alias }}
+                </td>
+                <td>
+                    <span class="price{{ movie.id }}">{{ movie.price }}</span>€
+                </td>
+                <td>
+                   <span class="quantity{{ movie.id }}">{{ app.session.get('panier')[movie.id] }}</span>
+                    <a href="#" type="button" id="addid{{ movie.id }}" class=" add btn btn-warning">+</a>
+                    <a href="#" type="button" id="remvid{{ movie.id }}" class="remv btn btn-warning">-</a>
+                </td>
+                <td>
+                    <span class="totalPrice{{ movie.id }}">{{ totalPricePerProduct[movie.id] }}</span>€
+                </td>
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <table>
+        <tr><td>TOTAL</td></tr>
+        <tr><td><span class="totalPanier">{{ totalPrice }}</span>€</td></tr>
+        <tr><td><a href="{{ url('app.order.finalisation') }}">ENVOYER MA COMMANDE</a></td></tr>
+    </table>
+
+{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
+    <script src="{{ asset('js/panierAjax.js') }}"></script>
+{% endblock %}

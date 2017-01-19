@@ -1,0 +1,57 @@
+<table class="table table-striped table-inverse">
+    <thead class="thead-default">
+    <tr>
+        <th>Nom</th>
+        <th>Image</th>
+        <th>Année de sortie</th>
+        <th>Catégorie</th>
+        <th>Acteur principal</th>
+        <th>Alias</th>
+        <th>Price</th>
+    </tr>
+    </thead>
+    <tbody class="renduListe">
+
+
+
+    {% for movie in movies %}
+
+        <tr>
+            <td>
+                <a href="{{url('app.movie.detail', {'id' : movie.id, 'slug' : movie.alias })}}">{{ movie.title }}</a>
+            </td>
+
+            <td>
+                <img width="100" height="150" src="/upload/movie/{{ movie.poster }}" />
+            </td>
+            <td>
+                {{ movie.releaseDate | date('Y') }}
+            </td>
+            <td>
+                {% if movie.category.name is defined %}
+                    {{ movie.category.name }}
+                {% else %}
+                    {{ movie.cat_name }}
+                {% endif %}
+            </td>
+            <td>
+                {% if movie.actors is defined %}
+                    {% for actor in movie.actors %}
+                        {{ actor.lastname }}
+                    {% endfor %}
+                {% else %}
+                    {{ movie.lastname }}
+                {% endif %}
+
+            </td>
+            <td>
+                {{ movie.alias }}
+            </td>
+            <td>
+                {{ movie.price }}
+            </td>
+
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

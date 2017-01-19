@@ -1,0 +1,34 @@
+{% extends 'base.admin.html.twig' %}
+
+
+{% block body %}
+    <p>{{ 'form.category.formulaire' | trans }}</p>
+    {#
+        form_start: début du formulaire
+        form_end: fin du formulaire
+        form_label: label champ
+        form_widget: champ
+        form_errors: affiche erreurs
+    #}
+    {{ form_start(form, { 'attr' : {'novalidate' : 'novalidate'} }) }}
+
+
+    {{ form_errors(form.name) }}
+    <p>
+        {{ form_label(form.name, 'form.category.name' | trans | title ~ ' : ') }}
+        {{ form_widget(form.name) }}
+    </p>
+    {#<p>
+        {{ form_label(form.slug, 'form.category.slug' | trans | title ~ ' : ') }}
+        {{ form_widget(form.slug) }}
+    </p>#}
+    {% if form.vars.value.id == false %}
+        <p><input type="submit" value="{{ 'submit.create' | trans( {}, 'forms') | title}}"/></p>
+    {% else %}
+    <p><input type="submit" value="{{ 'submit.update' | trans( {}, 'forms') | title}}"/></p>
+    {% endif %}
+    {{ form_end(form) }}
+
+    
+
+{% endblock %}

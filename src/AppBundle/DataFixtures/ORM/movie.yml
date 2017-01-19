@@ -1,0 +1,8 @@
+AppBundle\Entity\Movie:
+    movie_{1..50}:
+        title:  <sentence(4)>
+        poster: default.jpg
+        releaseDate: <dateTimeThisDecade()>
+        alias: <new \AppBundle\Service\SelugService->getSlug(@self->title)>
+        price: <randomFloat(2)>
+        category: '@category*'

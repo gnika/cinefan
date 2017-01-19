@@ -1,0 +1,5 @@
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+    prefix: /{_locale} # _locale est une variable url du code de la langage de symfonie : il lui faut maintenant la langue dans l'url
+

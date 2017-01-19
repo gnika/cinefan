@@ -1,0 +1,63 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{ url('app.admin.index') }}">Admin</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="{{ url('app.admin.category.index') }}">Gérer les thèmes <span class="sr-only">pour admin</span></a></li>
+                <li class="active"><a href="{{ url('app.homepage.index') }}">Liste des films <span class="sr-only">pour admin</span></a></li>
+                <li class="active"><a href="{{ url('app.admin.actor.index') }}">Gérer les acteurs <span class="sr-only">pour admin</span></a></li>
+                <li><a href="{{ url('app.homepage.index') }}">Front</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Langues <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        {# <li><a href="{{ path(app.request.attributes.get('_route'), app.request.get('_route_params')|merge({'_locale': 'fr'})) }}">Français</a></li>
+                         <li><a href="{{ path(app.request.attributes.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}">Anglais</a></li>
+                         #}
+
+
+                        {{ render_locales() | raw }}
+
+
+                    </ul>
+                </li>
+            </ul>
+            <form method="POST" action="{{ url('app.search.index') }}" class="navbar-form navbar-left">
+                <div class="form-group">
+                    <input type="search" name="search" class="form-control" placeholder="Search">
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+{#si identifié#}
+                {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+                <li><a href="{{ url('app.security.account') }}">Créer compte</a></li>
+
+                <li class="dropdown">
+                    <a href="{{ url('app.security.login') }}" >LOGIN</a>
+                </li>
+                {% else %}
+                    <li>
+                        <span class="totalPriceNav">{{ get_all_prices() | raw }}</span>€
+                    </li>
+                    <li class="dropdown">
+                        <a href="{{ url('app.panier.index') }}" >CART</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="{{ url('app.security.logout') }}" >LOGOUT</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>

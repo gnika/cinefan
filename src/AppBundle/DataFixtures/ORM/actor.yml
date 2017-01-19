@@ -1,0 +1,9 @@
+AppBundle\Entity\Actor:
+    actor_{1..50}:
+        firstname: <fr_FR:firstname()>
+        lastname: <fr_FR:lastname()>
+        portrait: default.jpg
+        birthday: <dateTimeThisDecade()>
+        bio:  <text()>
+        alias: <new getSlug(@self->firstname)>
+        movies: <numberBetween(1,4)>x @movie*

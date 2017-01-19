@@ -1,0 +1,58 @@
+form:
+    category:
+        formulaire: Formulaire pour ajouter des thèmes
+        name: nom
+        slug: alias
+        message:
+            ajout: Le thème a bien été rajouté
+            delete: Le thème a bien été supprimé
+            update: Le thème a bien été modifié
+        list:
+            edit: Editer
+            delete: supprimer
+            addth: Ajouter un thème
+    list:
+            edit: Editer
+            delete: supprimer
+            addth: Ajouter un thème
+    user:
+            username: Login
+            password: Mot de passe
+            email: Email
+            ajout: Votre utilisateur a bien été créé
+    actor:
+        formulaire: Formulaire pour ajouter des acteurs
+        lastname: Nom
+        firstname: Prénom
+        portrait: Portrait
+        birthday: Date de naissance
+        movies: Films notables
+        bio: Biographie
+        slug: alias
+        actor_Search: Nom de l'acteur principal
+        message:
+            ajout: Le thème a bien été rajouté
+            delete: Le thème a bien été supprimé
+            update: Le thème a bien été modifié
+        list:
+            addactor: Ajouter un acteur
+    movie:
+          formulaire: Formulaire pour ajouter des films
+          formulairesearch: Recherche avancée
+          name: nom
+          slug: alias
+          releasedate: Date de sortie
+          title: Titre du film
+          poster: Poster du film
+          category: Thème du film
+          releaseDate: Date de sortie du film
+          buy: Achète
+          message:
+              ajout: Le film a bien été rajouté
+              delete: Le film a bien été supprimé
+              update: Le film a bien été modifié
+          list:
+              edit: Editer
+              delete: supprimer
+              addth: Ajouter un film
+labelcategorylist: Choisissez un thème

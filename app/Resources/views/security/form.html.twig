@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    {#
+        form_start: début du formulaire
+        form_end: fin du formulaire
+        form_label: label champ
+        form_widget: champ
+        form_errors: affiche erreurs
+    #}
+    {{ form_start(form, { 'attr' : {'novalidate' : 'novalidate'} }) }}
+
+
+    {{ form_errors(form.username) }}
+    {{ form_errors(form.password) }}
+    {{ form_errors(form.email) }}
+    <p>
+        {{ form_label(form.username, 'form.user.username' | trans | title ~ ' : ') }}
+        {{ form_widget(form.username) }}
+    </p>
+    <p>
+        {{ form_label(form.email, 'form.user.email' | trans | title ~ ' : ') }}
+        {{ form_widget(form.email) }}
+    </p>
+    <p>
+        {{ form_label(form.password, 'form.user.password' | trans | title ~ ' : ') }}
+        {{ form_widget(form.password) }}
+    </p>
+
+
+    <p><input type="submit" value="{{ 'submit.create' | trans( {}, 'forms') | title}}"/></p>
+
+    {{ form_end(form) }}
+
+{% endblock %}

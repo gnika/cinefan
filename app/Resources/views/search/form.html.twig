@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <p>{{ 'form.movie.formulairesearch' | trans }}</p>
+    {#
+        form_start: début du formulaire
+        form_end: fin du formulaire
+        form_label: label champ
+        form_widget: champ
+        form_errors: affiche erreurs
+    #}
+    {{ form_start(form, { 'attr' : {'novalidate' : 'novalidate'} }) }}
+
+
+    {{ form_errors(form.title) }}
+    {{ form_errors(form.category) }}
+    <p>
+        {{ form_label(form.title, 'form.movie.title' | trans | title ~ ' : ') }}
+        {{ form_widget(form.title) }}
+    </p>
+    <p>
+        {{ form_label(form.price, 'form.movie.price' | trans | title ~ ' : ') }}
+        {{ form_widget(form.price) }}
+    </p>
+    <p>
+        {{ form_label(form.releaseDate, 'form.movie.releaseDate' | trans | title ~ ' : ') }}
+        {{ form_widget(form.releaseDate) }}
+    </p>
+    <p>
+        {{ form_label(form.actor_search, 'form.actor_search' | trans | title ~ ' : ') }}
+        {{ form_widget(form.actor_search) }}
+    </p><p>
+        {{ form_label(form.category, 'form.movie.category' | trans | title ~ ' : ') }}
+        {{ form_widget(form.category) }}
+    </p>
+    {#{#<p>
+        {{ form_label(form.slug, 'form.movie.slug' | trans | title ~ ' : ') }}
+        {{ form_widget(form.slug) }}
+    </p>#}
+
+        <p><input type="submit" value="{{ 'submit.search' | trans( {}, 'forms') | title}}"/></p>
+
+    {{ form_end(form) }}
+
+    {%  include('inc/rendue_liste.twig') %}
+
+{% endblock %}

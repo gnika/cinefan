@@ -1,0 +1,26 @@
+form:
+    category:
+        name: name
+        slug: slug
+        formulaire: form to add some theme
+        message:
+            ajout: the category has been added
+            delete: the category has been removed
+            update: the category has been updated
+        list:
+              edit: Edit
+              delete: Delete
+              addth: Add category
+    movie:
+            name: Title
+            slug: slug
+            releasedate: release date
+            formulaire: form to add some movie
+            message:
+                ajout: the movie has been added
+                delete: the movie has been removed
+                update: the movie has been updated
+            list:
+                  edit: Edit
+                  delete: Delete
+                  addth: Add category

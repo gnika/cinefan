@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    votre commande a été validée et envoyée
+    LE PDF A ETE CREE PAR L'EVENEMENT DECLENCHE MANUELLEMENT : <a target="_blank" href="{{asset( "upload/"~pdf) }}" class="button">CLIQUEZ ICI</a>
+
+{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
+{% endblock %}

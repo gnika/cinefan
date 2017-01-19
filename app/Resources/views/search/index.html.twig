@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ 'now'|localizeddate('long', 'none') }}
+    <a href="{{ url('app.search.advanced') }}">Recherche avancée</a>
+    <br/>
+    {% if app.session.flashBag.has('success') %}
+        <div class="alert alert-success">
+            {% for msg in app.session.flashBag.get('success') %}
+                {{ msg }}
+            {% endfor %}
+        </div>
+    {% endif %}
+    {%  include('inc/rendue_liste.twig') %}
+
+
+{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}
